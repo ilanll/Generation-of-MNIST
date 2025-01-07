@@ -291,5 +291,3 @@ def reverse_diffusion_ddim(model, noise, num_timesteps, device, train_timesteps)
 num_inference_timesteps = 200
 evaluate(config, 'ddim.png', reverse_diffusion_ddim, model, num_inference_timesteps, device, num_train_timesteps)
 Image.open('ddim.png')
-
-# Here the generated MNIST digits should be printed if you implemented it correctly!
