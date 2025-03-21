@@ -20,7 +20,6 @@ from PIL import Image
 import torch
 import torchvision
 
-# TODO adapt these parameters such that they work for your setup
 @dataclass
 class TrainingConfig:
     image_size = 28  # the generated image resolution
@@ -60,12 +59,7 @@ def get_alpha_overline(timesteps, num_timesteps, train_timesteps = None):
     betas = torch.linspace(0.0001, 0.02, num_timesteps).to(timesteps.device)
     return torch.tensor([torch.prod(1 - betas[:timesteps[t]]) for t in range(len(timesteps))]).to(timesteps.device)
 
-"""Implement the forward diffusion process:
-
-> Add blockquote
-
-
-"""
+"""Implement the forward diffusion process:"""
 
 def forward_diffusion(clean_images, noise, timesteps, num_timesteps):
     # the forward diffusion process
@@ -196,7 +190,7 @@ def evaluate(config, img_name, reverse_diffusion_process, model, timesteps, devi
     # Save the image grid
     torchvision.utils.save_image(image_grid, img_name)
 
-"""Now you will implement the reverse diffusion process with DDPM:"""
+"""Now we implement the reverse diffusion process with DDPM:"""
 
 def reverse_diffusion_ddpm(model, noise, num_timesteps, device, train_timesteps):
     # the reverse diffusion process with DDPM
@@ -246,7 +240,7 @@ image_grid = torchvision.utils.make_grid(next(iter(train_dataloader))[0])
 torchvision.utils.save_image(image_grid, 'example.png')
 Image.open('example.png')
 
-"""Now you will implement the reverse diffusion process with DDIM:"""
+"""Now we will implement the reverse diffusion process with DDIM:"""
 
 def reverse_diffusion_ddim(model, noise, num_timesteps, device, train_timesteps):# the reverse diffusion process with DDPM
     # it should take noise, the model and the number of timesteps as input and return the generated images
